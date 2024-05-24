@@ -1,0 +1,158 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 0px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.mode{
+    margin: 20px;
+}
+.header h2 {
+    font-size: 2.5em;
+    color: #333;
+    padding-left: 30px;
+}
+.countries{
+    background-color: hsl(0, 0%, 98%);
+    padding-top: 20px;
+    margin-left: 0;
+    padding-left: 30px;
+    border-radius: 3px;
+
+}
+
+.countries .search {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.countries .search input,
+.countries .search select {
+    
+    padding: 10px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    background: #fff;
+    color: hsl(0, 0%, 52%);
+}
+
+.countries .search input {
+    margin-right: 10px;
+
+}
+
+.countries .search select {
+    width: 150px;
+    margin-right: 30px;
+}
+
+.displayData {
+    background: hsl(0, 0%, 98%);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    width: calc(33.333% - 20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.card p {
+    margin: 10px 0;
+    color: #333;
+}
+
+.card p strong {
+    font-weight: bold;
+}
+#country{
+    color: #111;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+
+.mode input {
+    display: none;
+  }
+.mode label {
+    cursor: pointer;
+    background-color: #ccc;
+    border-radius: 15px;
+    display: inline-block;
+    height: 30px;
+    position: relative;
+    width: 60px;
+  }
+.mode label::after {
+    background-color: white;
+    border-radius: 50%;
+    content: '';
+    height: 26px;
+    left: 2px;
+    position: absolute;
+    top: 2px;
+    transition: 0.3s;
+    width: 26px;
+  }
+.mode input:checked + label::after {
+    transform: translateX(30px);
+  }
+  .dark-mode {
+    background-color: hsl(207, 26%, 17%);
+    color: white;
+  }
+.dark-mode .card {
+    background-color: hsl(209, 23%, 22%);
+    border: none;
+  }
+  .dark-mode .card p{
+    color: #fff;
+  }
+  .dark-mode h2{
+    color: #fff;
+  }
+  .dark-mode .countries .search input {
+    background-color: hsl(209, 23%, 22%);
+    color: #fff;
+  }
+  .dark-mode  .countries .search select{
+     background-color: hsl(209, 23%, 22%);
+     color: #fff;
+  }
+  .dark-mode .countries{
+    background-color: hsl(207, 26%, 17%);
+  }
+  .dark-mode .displayData{
+    background-color: hsl(207, 26%, 17%);
+  }
+ .dark-mode #country{
+    color: #fff;
+ }
