@@ -156,3 +156,59 @@
  .dark-mode #country{
     color: #fff;
  }
+
+ /* Media queries for responsiveness */
+@media (max-width: 1200px) {
+    .card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 992px) {
+    .countries{
+        flex-direction: column;
+    }
+    .search {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .search {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search input, .search select {
+        max-width: 100%;
+    }
+
+  
+}
+
+@media (max-width: 576px) {
+    .search {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search input  {
+        width: 80%;
+    }
+    .search select {
+        margin-top: 20px;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .card {
+        max-width: 100%;
+    }
+}
+
+
