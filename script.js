@@ -1,46 +1,75 @@
-// import data from './data.js';
+document.addEventListener('DOMContentLoaded', () => {
+    let response = [];
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     const inputCountry = document.getElementById('inputCountry');
-//     const selectBtn = document.getElementById('selectBtn');
-//     const displayData = document.getElementById('displayData');
+    const fetchData = async () => {
+        try {
+            const countriesData = await fetch('./data.json');
+            response = await countriesData.json();
+            displayCountries(response); // Initial display with fetched data
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
 
-//     // Function to display countries
-//     const displayCountries = (countries) => {
-//         displayData.innerHTML = '';
-//         countries.forEach(country => {
-//             const countryCard = document.createElement('div');
-//             countryCard.classList.add('card');
+    const inputCountry = document.getElementById('inputCountry');
+    const selectBtn = document.getElementById('selectBtn');
+    const displayData = document.getElementById('displayData');
 
-//             countryCard.innerHTML = `
-//                 <img src="${country.flags.png}" alt="Flag of ${country.name}">
-//                 <p><strong>Country:</strong> ${country.name}</p>
-//                 <p><strong>Population:</strong> ${country.population.toLocaleString()}</p>
-//                 <p><strong>Region:</strong> ${country.region}</p>
-//                 <p><strong>Capital:</strong> ${country.capital}</p>
-//             `;
-//             displayData.appendChild(countryCard);
-//         });
-//     };
+    // Function to display countries
+    const displayCountries = (countries) => {
+        displayData.innerHTML = '';
+        countries.forEach(country => {
+            const countryCard = document.createElement('div');
+            countryCard.classList.add('card');
 
-//     // Function to filter countries based on input and select
-//     const filterCountries = () => {
-//         const searchText = inputCountry.value.toLowerCase();
-//         const selectedRegion = selectBtn.value;
+            countryCard.innerHTML = `
+                <img src="${country.flags.png}" alt="Flag of ${country.name}">
+                <p><strong>Country:</strong> ${country.name}</p>
+                <p><strong>Population:</strong> ${country.population.toLocaleString()}</p>
+                <p><strong>Region:</strong> ${country.region}</p>
+                <p><strong>Capital:</strong> ${country.capital}</p>
+            `;
+            displayData.appendChild(countryCard);
+        });
+    };
 
-//         const filteredCountries = data.filter(country => {
-//             const matchesRegion = selectedRegion ? country.region === selectedRegion : true;
-//             const matchesSearch = country.name.toLowerCase().includes(searchText);
-//             return matchesRegion && matchesSearch;
-//         });
+    // Function to filter countries based on input and select
+    const filterCountries = () => {
+        const searchText = inputCountry.value.toLowerCase();
+        const selectedRegion = selectBtn.value;
 
-//         displayCountries(filteredCountries);
-//     };
+        const filteredCountries = response.filter(country => {
+            const matchesRegion = selectedRegion ? country.region === selectedRegion : true;
+            const matchesSearch = country.name.toLowerCase().includes(searchText);
+            return matchesRegion && matchesSearch;
+        });
 
-//     // Event listeners
-//     inputCountry.addEventListener('input', filterCountries);
-//     selectBtn.addEventListener('change', filterCountries);
+        displayCountries(filteredCountries);
+    };
 
-//     // Initial display
-//     displayCountries(data);
-// });
+    // Event listeners
+    inputCountry.addEventListener('input', filterCountries);
+    selectBtn.addEventListener('change', filterCountries);
+
+    // Fetch data and initial display
+    fetchData();
+});
+
+
+    // Toggle dark mode
+    const darkModeToggle = document.getElementById('darkmode-toggle');
+    darkModeToggle.addEventListener('change', toggleDarkMode);
+  
+    if (localStorage.getItem('dark-mode') === 'enabled') {
+      document.body.classList.add('dark-mode');
+      darkModeToggle.checked = true;
+    }
+
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        if (document.body.classList.contains('dark-mode')) {
+          localStorage.setItem('dark-mode', 'enabled');
+        } else {
+          localStorage.setItem('dark-mode', 'disabled');
+        }
+      }
